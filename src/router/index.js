@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import NewProduct from "@/views/NewProduct";
-import Product from "@/views/Product";
+import NewMovie from "@/views/NewMovie";
+import Movie from "@/views/Movie";
 
 
 
@@ -16,19 +16,19 @@ const routes = [
   },
   {
     path: '/edit',
-    name: 'New Product',
+    name: 'New Movie',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: NewProduct
+    component: NewMovie
   },
   {
-    path: '/product/:id',
-    name: 'product',
+    path: '/movie/:id',
+    name: 'movie',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: Product
+    component: Movie
   }
 ]
 

@@ -4,7 +4,7 @@
     <b-container>
       <b-row>
         <b-col cm="6" >
-          <ProductList/>
+          <MovieList/>
         </b-col>
       </b-row>
     </b-container>
@@ -14,14 +14,14 @@
 <script>
 // @ is an alias to /src
 import Header from "@/components/Header";
-import ProductList from "@/components/ProductList";
-import Product from "@/views/Product";
+import MovieList from "@/components/MovieList";
+import Movie from "@/views/Movie";
 
 export default {
   name: 'home',
   components: {
     Header,
-    ProductList
+    MovieList
   }
 }
 </script>

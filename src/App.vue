@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/edit">New Product</router-link>
+      <router-link to="/edit">New movie</router-link>
     </div>
     <router-view/>
   </div>
@@ -14,10 +14,10 @@ import { mapActions } from 'vuex';
 export default {
   name: "App",
   methods: {
-    ...mapActions(['load_products'])
+    ...mapActions(['load_movies'])
   },
   mounted: function() {
-    this.load_products();
+    this.load_movies();
 
   }
 }

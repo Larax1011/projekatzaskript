@@ -5,32 +5,32 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    products : []
+    movies : []
   },
   mutations: {
-    set_products: function (state,products){
-      state.products = products;
+    set_movies: function (state,movies){
+      state.movies = movies;
     },
 
-    add_product: function (state, product){
-      state.products.push(product);
+    add_movie: function (state, movie){
+      state.movies.push(movie);
     },
 
-    remove_product: function (state, id){
-      for (let i = 0; i < state.products.length; i++){
-        if (state.products[i].id == id){
-          state.products.splice(i,1);
+    remove_movie: function (state, id){
+      for (let i = 0; i < state.movies.length; i++){
+        if (state.movies[i].id == id){
+          state.movies.splice(i,1);
           break;
         }
 
       }
     },
 
-    update_product: function (state, payload){
-      for (let i = 0; i < state.products.length; i++){
-        if (state.products[i].id == payload.id){
-          state.products[i].price = payload.prod.price;
-          state.products[i].name= payload.prod.name;
+    update_movie: function (state, payload){
+      for (let i = 0; i < state.movies.length; i++){
+        if (state.movies[i].id == payload.id){
+          state.movies[i].price = payload.prod.price;
+          state.movies[i].name= payload.prod.name;
           break;
         }
 
@@ -39,15 +39,15 @@ export default new Vuex.Store({
 
   },
   actions: {
-    load_products: function ({ commit }) {
-      fetch('http://localhost/api/products', { method: 'get' }).then((response) => {
+    load_movies: function ({ commit }) {
+      fetch('http://localhost/api/movies', { method: 'get' }).then((response) => {
         if (!response.ok)
           throw response;
 
         return response.json()
       }).then((jsonData) => {
         console.log(jsonData);
-        commit('set_products', jsonData)
+        commit('set_movies', jsonData)
       }).catch((error) => {
         if (typeof error.text === 'function')
           error.text().then((errorMessage) => {
@@ -58,14 +58,14 @@ export default new Vuex.Store({
       });
     },
 
-    delete_product: function({ commit }, id) {
-      fetch(`http://localhost/api/product/${id}`, { method: 'delete' }).then((response) => {
+    delete_movie: function({ commit }, id) {
+      fetch(`http://localhost/api/movie/${id}`, { method: 'delete' }).then((response) => {
         if (!response.ok)
           throw response;
 
         return response.json()
       }).then((jsonData) => {
-        commit('remove_product', jsonData.id)
+        commit('remove_movie', jsonData.id)
       }).catch((error) => {
         if (typeof error.text === 'function')
           error.text().then((errorMessage) => {
@@ -76,20 +76,20 @@ export default new Vuex.Store({
       });
     },
 
-    new_product: function({ commit }, product) {
-      fetch('http://localhost/api/products', {
+    new_movie: function({ commit }, movie) {
+      fetch('http://localhost/api/movies', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: product
+        body: movie
       }).then((response) => {
         if (!response.ok)
           throw response;
 
         return response.json();
       }).then((jsonData) => {
-        commit('add_product', jsonData);
+        commit('add_movie', jsonData);
       }).catch((error) => {
         if (typeof error.text === 'function')
           error.text().then((errorMessage) => {
@@ -100,8 +100,8 @@ export default new Vuex.Store({
       });
     },
 
-    change_product: function({ commit }, payload) {
-      fetch(`http://localhost/api/product/${payload.id}`, {
+    change_movie: function({ commit }, payload) {
+      fetch(`http://localhost/api/movie/${payload.id}`, {
         method: 'put',
         headers: {
           'Content-Type': 'application/json'
@@ -113,7 +113,7 @@ export default new Vuex.Store({
 
         return response.json();
       }).then((jsonData) => {
-        commit('update_product', {id: payload.id, prod:jsonData});
+        commit('update_movie', {id: payload.id, prod:jsonData});
       }).catch((error) => {
         if (typeof error.text === 'function')
           error.text().then((errorMessage) => {
